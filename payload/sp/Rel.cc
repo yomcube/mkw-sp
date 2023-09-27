@@ -1,19 +1,17 @@
 #include "Rel.hh"
 
+#include "Common.hh"
+
 extern "C" {
-#include "sp/Host.h"
 #include "sp/Patcher.h"
 #include "sp/Payload.h"
 }
-#include "sp/security/Memory.hh"
-#include "sp/security/StackCanary.hh"
-#include "sp/storage/Storage.hh"
 
 extern "C" {
-#include <game/system/Console.h>
 #include <revolution.h>
 }
 
+#include <array>
 #include <cstring>
 
 namespace SP::Rel {
@@ -84,7 +82,7 @@ static bool IsClean(const void *rel, u32 roundedRelSize) {
         regionIndex = 3;
         break;
     default:
-        panic("Invalid game region!");
+        assert(!"Invalid game region!");
     }
 
     u32 relSize = moduleInfoArray[regionIndex].size;
@@ -102,18 +100,20 @@ static bool IsClean(const void *rel, u32 roundedRelSize) {
 }
 
 std::expected<void, const char *> Load() {
-    auto file = Storage::OpenRO("/rel/StaticR.rel");
-    if (!file) {
+    void *src = reinterpret_cast<void *>(OSRoundUp32B(OSGetMEM1ArenaLo()));
+
+    DVDFileInfo fileInfo;
+    if (!DVDOpen("/rel/StaticR.rel", &fileInfo)) {
         return std::unexpected("Failed to find StaticR.rel");
     }
 
-#ifndef GDB_COMPATIBLE
-    void *src = OSGetMEM1ArenaLo();
-
-    if (!file->read(src, file->size(), 0)) {
+    s32 size = OSRoundUp32B(fileInfo.length);
+    s32 result = DVDRead(&fileInfo, src, size, 0);
+    DVDClose(&fileInfo);
+    if (result != size) {
         return std::unexpected("Failed to read StaticR.rel from disc.");
     }
-    if (!IsClean(src, file->size())) {
+    if (!IsClean(src, size)) {
         return std::unexpected("StaticR.rel has been modified.");
     }
 
@@ -149,38 +149,11 @@ std::expected<void, const char *> Load() {
     OSSectionInfo *prologSectionInfo = dstSectionInfo + dstHeader->prologSection;
     entry = reinterpret_cast<EntryFunction>(prologSectionInfo->offset + dstHeader->prolog);
     return {};
-#else
-    if (!file->read(Rel_getStart(), file->size(), 0)) {
-        return std::unexpected("Failed to read StaticR.rel from disc.");
-    }
-    if (!IsClean(Rel_getStart(), file->size())) {
-        return std::unexpected("StaticR.rel has been modified.");
-    }
-
-    auto *dst = reinterpret_cast<OSModuleHeader *>(Rel_getStart());
-    auto *bss = reinterpret_cast<void *>(0x809BD6E0);
-
-    OSLink(dst, bss);
-    entry = reinterpret_cast<EntryFunction>(dst->prolog);
-    return {};
-#endif
 }
 
 void Run() {
     assert(entry);
-#ifndef GDB_COMPATIBLE
-    StackCanary::AddLinkRegisterPatches(reinterpret_cast<u32 *>(Rel_getTextSectionStart()),
-            reinterpret_cast<u32 *>(Rel_getTextSectionEnd()));
-#endif
     Patcher_patch(PATCHER_BINARY_REL);
-    Memory::ProtectRange(OS_PROTECT_CHANNEL_2, Rel_getTextSectionStart(), Rel_getRodataSectionEnd(),
-            OS_PROTECT_PERMISSION_READ);
-    Memory::ProtectRange(OS_PROTECT_CHANNEL_3, Payload_getTextSectionStart(),
-            Payload_getRodataSectionEnd(), OS_PROTECT_PERMISSION_READ);
-
-    if (HostPlatform_IsDolphin(Host_GetPlatform())) {
-        Console_init();
-    }
     entry();
 }
 

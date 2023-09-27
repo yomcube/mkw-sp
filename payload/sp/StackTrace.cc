@@ -4,9 +4,7 @@ extern "C" {
 #include "sp/Dol.h"
 #include "sp/Payload.h"
 #include "sp/Rel.h"
-#include "sp/security/StackCanary.h"
 }
-#include "MapFile.hh"
 
 extern "C" {
 #include <revolution.h>
@@ -45,10 +43,7 @@ bool StackTraceIterator_read(StackTraceIterator *it, void **addr) {
     }
 
     if (addr != NULL) {
-        void *lr = it->cur->LR;
-        *addr = StackCanary_IsLinkRegisterEncrypted((u32)lr) ?
-                (void *)StackCanary_XORLinkRegister((u32)lr) :
-                lr;
+        *addr = it->cur->LR;
     }
 
     ++it->depth;
@@ -119,22 +114,7 @@ size_t WriteStackTraceShort(char *buf, int capacity, void *sp) {
             break;
         }
 
-        auto sym = SP::MapFile::SymbolLowerBound(reinterpret_cast<uintptr_t>(lr));
-        if (sym && !SP::MapFile::ScoreMatch(sym->address, reinterpret_cast<uintptr_t>(lr))) {
-            sym = std::nullopt;
-        }
-        char fmtSym[256] = "<- ";
-        if (sym) {
-            intptr_t delta = reinterpret_cast<intptr_t>(lr) - static_cast<intptr_t>(sym->address);
-            auto name = sym->name;
-            snprintf(fmtSym, sizeof(fmtSym), "%.*s [%c0x%X]\n", name.size(), name.data(),
-                    "+-"[delta < 0], std::abs(delta));
-            if (fmtSym[sizeof(fmtSym) - 2] != '\0') {
-                fmtSym[sizeof(fmtSym) - 2] = '\n';
-            }
-        }
-
-        l += snprintf(buf + l, capacity - l, "%p%s %s %s", ported, pointerFlag, funcName, fmtSym);
+        l += snprintf(buf + 1, capacity - 1, "@ %p%s %s\n", ported, pointerFlag, funcName);
     }
 
     return l;

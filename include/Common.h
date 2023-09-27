@@ -1,7 +1,5 @@
 #pragma once
 
-#include <sp/Panic.h>
-
 #include <assert.h>
 #include <stdbool.h>
 #include <stddef.h>
