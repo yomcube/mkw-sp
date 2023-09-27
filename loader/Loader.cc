@@ -147,11 +147,7 @@ std::optional<Apploader::GameEntryFunc> Run() {
     u32 payloadSize;
     switch (REGION) {
     case REGION_P:
-#ifdef GDB_COMPATIBLE
-        payloadDst = reinterpret_cast<void *>(0x809C4FA0);
-#else
         payloadDst = reinterpret_cast<void *>(0x8076F000);
-#endif
         payloadSrc = &payloadP;
         payloadSize = payloadPSize;
         break;
