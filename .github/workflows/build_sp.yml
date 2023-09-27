@@ -7,14 +7,12 @@ on:
       - 'tools/**'
       - '.github/workflows/run_tidy.yml'
       - '.github/workflows/clean_bmg.yml'
-      - '.github/workflows/build_tools.yml'
   pull_request:
     paths-ignore:
       - 'www/**'
       - 'tools/**'
       - '.github/workflows/run_tidy.yml'
       - '.github/workflows/clean_bmg.yml'
-      - '.github/workflows/build_tools.yml'
 
 jobs:
   build:
@@ -48,8 +46,6 @@ jobs:
         run: tar -xf cache/devkitPPC-r43-3-linux_x86_64.pkg.tar.zst
       - name: Install ninja
         run: sudo apt install ninja-build
-      - name: Install protoc
-        run: sudo apt install protobuf-compiler
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -60,8 +56,6 @@ jobs:
         run: pip install pyelftools
       - name: Install itanium_demangler
         run: pip install itanium_demangler
-      - name: Install protobuf
-        run: pip install protobuf
       - name: Compile
         run: ./build.py --ci -- ${{ matrix.profile }}
       - name: Upload result
