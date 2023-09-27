@@ -25,12 +25,6 @@ if sys.version_info < (3, 10):
 if platform.python_implementation() == "PyPy":
     print("Warning: PyPy may be slower, due to spawning many Python processes")
 
-features = [
-    'mission-mode',
-    'online',
-    'save-states',
-]
-
 our_argv = []
 ninja_argv = []
 found_seperator = False
@@ -45,8 +39,6 @@ for arg in sys.argv[1:]:
 parser = argparse.ArgumentParser()
 parser.add_argument("--dry", action="store_true")
 parser.add_argument("--ci", action="store_true")
-for feature in features:
-    parser.add_argument(f'--{feature}', default=True, action=argparse.BooleanOptionalAction)
 args = parser.parse_args(our_argv)
 
 out_buf = io.StringIO()
@@ -423,30 +415,6 @@ n.rule(
 )
 n.newline()
 
-feature_dirs = []
-feature_hh_files = []
-for feature in features:
-    content = '#pragma once\n'
-    content += '\n'
-    content += '#define ENABLE_'
-    content += feature.upper().replace('-', '_')
-    content += ' '
-    content += str(vars(args)[feature.replace('-', '_')]).lower()
-    content += '\n'
-    feature_dir = os.path.join('$builddir', 'features', feature.replace('-', '_'))
-    feature_dirs += [feature_dir]
-    feature_hh_file = os.path.join(feature_dir, feature.title().replace('-', '') + '.hh')
-    feature_hh_files += [feature_hh_file]
-    n.build(
-        feature_hh_file,
-        'write',
-        variables = {
-            'content': repr(content)[1:-1],
-        },
-        implicit = '$write',
-    )
-n.newline()
-
 code_in_files = {
     'payload': [
         os.path.join('common', 'Console.cc'),
@@ -533,12 +501,8 @@ for target in code_in_files:
                         *common_ccflags,
                         *target_cflags[target],
                         *profile_cflags[profile],
-                        *['-isystem ' + feature_dir for feature_dir in feature_dirs],
                     ]),
                 },
-                order_only = [
-                    *(feature_hh_files if target == 'payload' and ext[1:] == 'cc' else [])
-                ],
             )
         n.newline()
 
