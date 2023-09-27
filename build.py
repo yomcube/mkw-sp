@@ -222,7 +222,6 @@ if not devkitppc:
     raise SystemExit("DEVKITPPC environment variable not set")
 
 n.variable('write', os.path.join('tools', 'write.py'))
-n.variable('nanopb', os.path.join('vendor', 'nanopb', 'generator', 'nanopb_generator.py'))
 n.variable('gcc', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('compiler', os.path.join(devkitppc, 'bin', 'powerpc-eabi-gcc'))
 n.variable('postprocess', 'postprocess.py')
@@ -238,13 +237,6 @@ n.rule(
     command = f'{sys.executable} $write "$content" $out',
     description = 'WRITE $out',
 )
-
-n.rule(
-    'nanopb',
-    command = f'{sys.executable} $nanopb $in -I protobuf -L "#include <vendor/nanopb/%s>" -D build/protobuf -q',
-    description = 'NANOPB $out',
-)
-n.newline()
 
 common_Sflags = [
     '-isystem', 'include',
@@ -455,52 +447,14 @@ for feature in features:
     )
 n.newline()
 
-protobuf_proto_files = [
-    os.path.join('protobuf', 'Login.proto'),
-    os.path.join('protobuf', 'Matchmaking.proto'),
-    os.path.join('protobuf', 'NetStorage.proto'),
-    os.path.join('protobuf', 'Ranking.proto'),
-    os.path.join('protobuf', 'Room.proto'),
-    os.path.join('protobuf', 'Update.proto'),
-]
-protobuf_h_files = []
-protobuf_c_files = []
-for proto_file in protobuf_proto_files:
-    base, _ = os.path.splitext(proto_file)
-    options_file = base + '.options'
-    h_file = os.path.join('$builddir', base + '.pb.h')
-    c_file = os.path.join('$builddir', base + '.pb.c')
-    protobuf_h_files += [h_file]
-    protobuf_c_files += [c_file]
-    n.build(
-        [
-            h_file,
-            c_file,
-        ],
-        'nanopb',
-        proto_file,
-        implicit = options_file,
-    )
-n.newline()
-
 code_in_files = {
     'payload': [
-        *protobuf_c_files,
         os.path.join('common', 'Console.cc'),
         os.path.join('common', 'DCache.cc'),
         os.path.join('common', 'Font.c'),
         os.path.join('common', 'Font.cc'),
-        os.path.join('common', 'TQuat.S'),
-        os.path.join('common', 'TQuat.cc'),
-        os.path.join('common', 'TVec3.S'),
-        os.path.join('common', 'TVec3.cc'),
         os.path.join('common', 'VI.cc'),
         os.path.join('vendor', 'lzma', 'LzmaDec.c'),
-        os.path.join('vendor', 'nanopb', 'pb_common.c'),
-        os.path.join('vendor', 'nanopb', 'pb_decode.c'),
-        os.path.join('vendor', 'nanopb', 'pb_encode.c'),
-        os.path.join('vendor', 'tjpgd', 'tjpgd.c'),
-        *sorted(glob.glob("vendor/bzip2/*.c")),
         *sorted(glob.glob("payload/**/*.cc", recursive=True)),
         *sorted(glob.glob("payload/**/*.c", recursive=True)),
         *sorted(glob.glob("payload/**/*.S", recursive=True)),
@@ -583,8 +537,7 @@ for target in code_in_files:
                     ]),
                 },
                 order_only = [
-                    *(feature_hh_files if target == 'payload' and ext[1:] == 'cc' else []),
-                    *(protobuf_h_files if target == 'payload' else []),
+                    *(feature_hh_files if target == 'payload' and ext[1:] == 'cc' else [])
                 ],
             )
         n.newline()
