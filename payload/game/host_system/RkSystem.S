@@ -27,3 +27,10 @@ PATCH_REPLACE_START(RkSystem_initialize, 0x1A0)
     nop
     li r3, 0
 PATCH_REPLACE_END(RkSystem_initialize, 0x1A0)
+
+// Don't create a heap for the rel because we already allocate some space from the arena for it. The
+// function we are patching is still RkSystem_initialize but the NTSC-K offset is different so as a
+// workaround we reference it from the next function instead.
+PATCH_REPLACE_START(RkSystem_run, 0xFFFFFFD8)
+    li r3, 0
+PATCH_REPLACE_END(RkSystem_run, 0xFFFFFFD8)
