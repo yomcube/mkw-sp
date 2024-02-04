@@ -17,6 +17,12 @@
 0x8015e834 DVDReadPrio
 0x8015e568 DVDClose
 
+0x8019b4b0 NANDPrivateCreate
+0x8019b64c NANDPrivateDelete
+0x8019b884 NANDWrite
+0x8019c88c NANDPrivateOpen
+0x8019ca80 NANDClose
+
 0x8019fc68 OSInit
 0x801a10a4 OSGetMEM1ArenaHi
 0x801a10bc OSGetMEM1ArenaLo
@@ -25,6 +31,7 @@
 0x801a162c DCFlushRange
 0x801a165c DCStoreRange
 0x801a1710 ICInvalidateRange
+0x801a25d0 OSReport
 0x801a4ec4 OSFatal
 0x801a65ac OSDisableInterrupts
 0x801a65d4 OSRestoreInterrupts
@@ -42,8 +49,24 @@
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
+0x80229dcc _Znwj
+0x80229df0 _Znaj
+0x80229dfc _Znaji
+0x80229e14 _ZdlPvj
+
 0x8023afe0 _ZN3EGG12SceneManager18changeSiblingSceneEi
 
 0x80386638 MaxEntryNum
 0x8038663c FstStringStart
 0x80386640 FstStart
+
+0x80532030 _ZNK6System10RaceConfig12isTimeAttackEv
+0x80536230 _ZNK6System11RaceManager14isStageReachedEi
+
+0x8058faa8 _ZN4Kart17KartObjectManager14CreateInstanceEv
+0x8058fee0 _ZN4Kart17KartObjectManager4initEv
+0x8058ffe8 _ZN4Kart17KartObjectManager4calcEv
+0x80590110 _ZN4Kart17KartObjectManager3endEj
+
+0x809bd728 _ZN6System10RaceConfig10s_instanceE
+0x809bd730 _ZN6System11RaceManager10s_instanceE
