@@ -14,8 +14,13 @@ struct TestHeader {
 };
 
 struct TestData {
+    // Added in maj0 min1
     EGG::Vector3f pos;
     EGG::Quatf fullRot;
+    // Added in maj0 min2
+    EGG::Vector3f extVel;
+    // Added in maj0 min3
+    EGG::Vector3f intVel;
 };
 
 } // namespace SP::Kinoko

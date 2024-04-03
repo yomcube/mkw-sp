@@ -39,6 +39,8 @@ void TestBuilder::writeData(const TestData &data) {
 
     pData->pos = data.pos;
     pData->fullRot = data.fullRot;
+    pData->extVel = data.extVel;
+    pData->intVel = data.intVel;
 
     incFrameCount();
     m_index += sizeof(TestData);
@@ -50,12 +52,12 @@ void TestBuilder::writeDataNoFrameInc(const TestData &data) {
 }
 
 TestData *TestBuilder::findNextEntry() const {
-    return reinterpret_cast<TestData *>(&m_buffer[m_index]);
+    return reinterpret_cast<TestData *>(m_buffer + m_index);
 }
 
 u32 TestBuilder::version() const {
     constexpr u16 major = 0;
-    constexpr u16 minor = 1;
+    constexpr u16 minor = 3;
     return major << 16 | minor;
 }
 

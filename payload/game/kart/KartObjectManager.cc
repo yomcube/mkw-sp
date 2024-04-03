@@ -21,6 +21,8 @@ void KartObjectManager::init() {
     SP::Kinoko::TestData data;
     data.pos = m_objects[0]->pos();
     data.fullRot = m_objects[0]->fullRot();
+    data.extVel = m_objects[0]->extVel();
+    data.intVel = m_objects[0]->intVel();
     SP::Kinoko::TestBuilder::Instance()->writeDataNoFrameInc(data);
 }
 
@@ -38,6 +40,8 @@ void KartObjectManager::calc() {
     SP::Kinoko::TestData data;
     data.pos = m_objects[0]->pos();
     data.fullRot = m_objects[0]->fullRot();
+    data.extVel = m_objects[0]->extVel();
+    data.intVel = m_objects[0]->intVel();
     SP::Kinoko::TestBuilder::Instance()->writeData(data);
 }
 
