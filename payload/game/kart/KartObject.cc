@@ -18,4 +18,16 @@ const EGG::Vector3f &KartObject::intVel() const {
     return body->physics->dynamics->intVel;
 }
 
+f32 KartObject::softSpeedLimit() const {
+    return move->softSpeedLimit;
+}
+
+f32 KartObject::speed() const {
+    return move->speed;
+}
+
+f32 KartObject::acceleration() const {
+    return move->acceleration;
+}
+
 } // namespace Kart

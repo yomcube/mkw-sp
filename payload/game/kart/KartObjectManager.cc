@@ -23,6 +23,9 @@ void KartObjectManager::init() {
     data.fullRot = m_objects[0]->fullRot();
     data.extVel = m_objects[0]->extVel();
     data.intVel = m_objects[0]->intVel();
+    data.speed = m_objects[0]->speed();
+    data.acceleration = m_objects[0]->acceleration();
+    data.softSpeedLimit = m_objects[0]->softSpeedLimit();
     SP::Kinoko::TestBuilder::Instance()->writeDataNoFrameInc(data);
 }
 
@@ -42,6 +45,9 @@ void KartObjectManager::calc() {
     data.fullRot = m_objects[0]->fullRot();
     data.extVel = m_objects[0]->extVel();
     data.intVel = m_objects[0]->intVel();
+    data.speed = m_objects[0]->speed();
+    data.acceleration = m_objects[0]->acceleration();
+    data.softSpeedLimit = m_objects[0]->softSpeedLimit();
     SP::Kinoko::TestBuilder::Instance()->writeData(data);
 }
 

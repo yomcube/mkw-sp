@@ -21,6 +21,10 @@ struct TestData {
     EGG::Vector3f extVel;
     // Added in maj0 min3
     EGG::Vector3f intVel;
+    // Added in maj0 min4
+    f32 speed;
+    f32 acceleration;
+    f32 softSpeedLimit;
 };
 
 } // namespace SP::Kinoko

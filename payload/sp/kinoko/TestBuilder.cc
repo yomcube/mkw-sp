@@ -41,6 +41,9 @@ void TestBuilder::writeData(const TestData &data) {
     pData->fullRot = data.fullRot;
     pData->extVel = data.extVel;
     pData->intVel = data.intVel;
+    pData->speed = data.speed;
+    pData->acceleration = data.acceleration;
+    pData->softSpeedLimit = data.softSpeedLimit;
 
     incFrameCount();
     m_index += sizeof(TestData);
@@ -57,7 +60,7 @@ TestData *TestBuilder::findNextEntry() const {
 
 u32 TestBuilder::version() const {
     constexpr u16 major = 0;
-    constexpr u16 minor = 3;
+    constexpr u16 minor = 4;
     return major << 16 | minor;
 }
 
@@ -78,8 +81,8 @@ TestBuilder *TestBuilder::Instance() {
 }
 
 TestBuilder::TestBuilder() {
-    // 256 KiB
-    constexpr size_t size = 0x40000;
+    // 1 MiB
+    constexpr size_t size = 0x100000;
     m_buffer = new (0x20) u8[size];
     memset(m_buffer, 0, size);
     m_index = 0;
