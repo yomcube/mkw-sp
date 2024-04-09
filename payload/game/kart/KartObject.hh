@@ -9,6 +9,8 @@ class KartObject {
 public:
     const EGG::Vector3f &pos() const;
     const EGG::Vector3f &extVel() const;
+    const EGG::Vector3f &angVel2() const;
+    const EGG::Quatf &mainRot() const;
     const EGG::Quatf &fullRot() const;
     const EGG::Vector3f &intVel() const;
     f32 softSpeedLimit() const;

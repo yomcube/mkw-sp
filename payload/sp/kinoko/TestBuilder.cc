@@ -44,6 +44,8 @@ void TestBuilder::writeData(const TestData &data) {
     pData->speed = data.speed;
     pData->acceleration = data.acceleration;
     pData->softSpeedLimit = data.softSpeedLimit;
+    pData->mainRot = data.mainRot;
+    pData->angVel2 = data.angVel2;
 
     incFrameCount();
     m_index += sizeof(TestData);
@@ -60,7 +62,7 @@ TestData *TestBuilder::findNextEntry() const {
 
 u32 TestBuilder::version() const {
     constexpr u16 major = 0;
-    constexpr u16 minor = 4;
+    constexpr u16 minor = 5;
     return major << 16 | minor;
 }
 

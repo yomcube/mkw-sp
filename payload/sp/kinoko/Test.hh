@@ -25,6 +25,9 @@ struct TestData {
     f32 speed;
     f32 acceleration;
     f32 softSpeedLimit;
+    // Added in maj0 min5
+    EGG::Quatf mainRot;
+    EGG::Vector3f angVel2;
 };
 
 } // namespace SP::Kinoko
