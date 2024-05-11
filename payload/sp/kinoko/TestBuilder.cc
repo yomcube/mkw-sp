@@ -83,8 +83,8 @@ TestBuilder *TestBuilder::Instance() {
 }
 
 TestBuilder::TestBuilder() {
-    // 1 MiB
-    constexpr size_t size = 0x100000;
+    // 1.5 MiB
+    constexpr size_t size = 0x180000;
     m_buffer = new (0x20) u8[size];
     memset(m_buffer, 0, size);
     m_index = 0;
