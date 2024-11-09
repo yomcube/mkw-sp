@@ -282,10 +282,6 @@ bool IsValid(const u8 *raw, u32 size) {
         }
     }
 
-    if (header->lapCount != 3) {
-        return false;
-    }
-
     for (u32 i = 0; i < 3; i++) {
         if (!header->lapTimes[i].isValid()) {
             return false;
