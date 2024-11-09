@@ -39,6 +39,9 @@ PATCH_REPLACE_END(0x805A88DC, 0)
 
 PATCH_BL_START(0x805A88EC, 0)
 	bl loc_0x2C
+	.word 0x00000000
+	.word 0x00000000
+	.word 0x00000000
 	lis r28, 0x0
 
 	loc_0x14:
