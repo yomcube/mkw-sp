@@ -23,10 +23,10 @@ PATCH_BL_END(KartItem_activateMushroom, 0x10)
 
 // Task 8 Infinite Mushroom Code [vabold, Gaberboo]
 // https://pastebin.com/qUyvt4ZW
-PATCH_BL_START(_ZN4Item8KartItem4calcEv, 0x890)
+PATCH_BL_START(KartItem_activateMushroom, -0x494)
     stw r0, 569(r29) // stw instead of stb (original instruction)
     li r0, 0x3
     stw r0, 144(r29)
     li r0, 0x5
     stw r0, 140(r29)
-PATCH_BL_END(_ZN4Item8KartItem4calcEv, 0x890)
+PATCH_BL_END(KartItem_activateMushroom, -0x494)
