@@ -3,6 +3,7 @@
 #include "game/system/RaceConfig.hh"
 #include "game/system/RaceManager.hh"
 
+#include <sp/kinoko/NANDReport.hh>
 #include <sp/kinoko/TestBuilder.hh>
 
 extern "C" {
@@ -63,9 +64,10 @@ void KartObjectManager::end(u32 playerIdx) {
 
     auto result = SP::Kinoko::TestBuilder::Instance()->save();
     if (!result) {
-        SP_LOG(">> TEST SAVE ERROR: %s", result.error());
+        const char *msg = SP::Kinoko::NANDReport::SetNANDMsg(result.error());
+        SP::Kinoko::NANDReport::Fail(msg);
     } else {
-        SP_LOG(">> TEST SAVED SUCCESSFULLY!");
+        SP::Kinoko::NANDReport::Success();
     }
 }
 

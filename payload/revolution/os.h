@@ -103,6 +103,7 @@ const char *OSGetAppGamename(void);
 
 #include "revolution/os/OSCache.h"
 #include "revolution/os/OSModule.h"
+#include "revolution/os/OSReset.h"
 
 BOOL OSDisableInterrupts(void);
 BOOL OSEnableInterrupts();

@@ -10,6 +10,7 @@
 0x8000f314 memcmp
 0x80011938 snprintf
 0x800135f0 strstr
+0x80021254 strlen
 
 0x8015df4c DVDConvertPathToEntrynum
 0x8015e254 DVDFastOpen
@@ -19,7 +20,9 @@
 
 0x8019b4b0 NANDPrivateCreate
 0x8019b64c NANDPrivateDelete
+0x8019b7a4 NANDRead
 0x8019b884 NANDWrite
+0x8019c800 NANDOpen
 0x8019c88c NANDPrivateOpen
 0x8019ca80 NANDClose
 
@@ -38,6 +41,7 @@
 0x801a6d3c Relocate
 0x801a75d0 OSGetPhysicalMem1Size
 0x801a75dc OSGetPhysicalMem2Size
+0x801a856c OSShutdownSystem
 
 0x801b94a4 VIInit
 0x801b99ec VIWaitForRetrace
@@ -45,10 +49,14 @@
 0x801bab2c VISetBlack
 0x801d17f8 NETMemCpy
 0x801d1ba0 NETMemSet
+0x801d1ca0 NETCalcCRC32
 0x801d24f4 NETSHA1Init
 0x801d2544 NETSHA1Update
 0x801d25f8 NETSHA1GetDigest
 
+0x80218c2c _ZN3EGG6Decomp9DecodeSZSEPKhPh
+
+0x80229814 EGG_Heap_alloc
 0x80229dcc _Znwj
 0x80229df0 _Znaj
 0x80229dfc _Znaji
@@ -60,7 +68,11 @@
 0x8038663c FstStringStart
 0x80386640 FstStart
 
-0x80532030 _ZNK6System10RaceConfig12isTimeAttackEv
+0x8051c120 _ZNK6System12RawGhostFile7isValidEv
+0x8051d1b4 _ZN6System12RawGhostFile10decompressEPS0_
+
+0x8052fe58 RaceConfig_CreateInstance
+0x805302c4 _ZN6System10RaceConfig8initRaceEv
 0x80536230 _ZNK6System11RaceManager14isStageReachedEi
 0x8054994c _ZN6System15UnlockFlags_getEv
 
@@ -68,6 +80,9 @@
 0x8058fee0 _ZN4Kart17KartObjectManager4initEv
 0x8058ffe8 _ZN4Kart17KartObjectManager4calcEv
 0x80590110 _ZN4Kart17KartObjectManager3endEj
+
+0x80621e00 Section_init
+0x80634e44 SectionDirector_init
 
 0x809bd728 _ZN6System10RaceConfig10s_instanceE
 0x809bd730 _ZN6System11RaceManager10s_instanceE
