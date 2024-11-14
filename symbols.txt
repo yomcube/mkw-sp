@@ -7,6 +7,8 @@
 0x8000951c RKSystem_run
 0x80009844 _ZN6System14RKSceneManager22changeSceneWithCreatorEiPv
 
+0x800a49c0 _ZN4nw4r3snd6detail11SoundThread15SoundThreadFuncEPv
+
 0x8000f314 memcmp
 0x80011938 snprintf
 0x800135f0 strstr
@@ -68,6 +70,8 @@
 0x8038663c FstStringStart
 0x80386640 FstStart
 
+0x8051bc78 _ZN5Scene9GameScene4drawEv
+
 0x8051c120 _ZNK6System12RawGhostFile7isValidEv
 0x8051d1b4 _ZN6System12RawGhostFile10decompressEPS0_
 
@@ -76,6 +80,8 @@
 0x80536230 _ZNK6System11RaceManager14isStageReachedEi
 0x8054994c _ZN6System15UnlockFlags_getEv
 
+0x80564adc FUN_80564adc
+
 0x8058faa8 _ZN4Kart17KartObjectManager14CreateInstanceEv
 0x8058fee0 _ZN4Kart17KartObjectManager4initEv
 0x8058ffe8 _ZN4Kart17KartObjectManager4calcEv
@@ -83,6 +89,8 @@
 
 0x80621e00 Section_init
 0x80634e44 SectionDirector_init
+
+0x8071763c _ZN5Sound12SoundManager4calcEv
 
 0x809bd728 _ZN6System10RaceConfig10s_instanceE
 0x809bd730 _ZN6System11RaceManager10s_instanceE
