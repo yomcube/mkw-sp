@@ -29,6 +29,12 @@ void KartObjectManager::init() {
     data.softSpeedLimit = m_objects[0]->softSpeedLimit();
     data.mainRot = m_objects[0]->mainRot();
     data.angVel2 = m_objects[0]->angVel2();
+
+    const auto *raceMgrPlayer = System::RaceManager::Instance()->player(0);
+    data.raceCompletion = raceMgrPlayer->raceCompletion;
+    data.checkpointId = raceMgrPlayer->checkpointId;
+    data.jugemId = raceMgrPlayer->jugemId;
+
     SP::Kinoko::TestBuilder::Instance()->writeDataNoFrameInc(data);
 }
 
@@ -39,7 +45,8 @@ void KartObjectManager::calc() {
         return;
     }
 
-    if (System::RaceManager::Instance()->isStageReached(3)) {
+    auto *raceManager = System::RaceManager::Instance();
+    if (raceManager->isStageReached(3)) {
         return;
     }
 
@@ -53,6 +60,12 @@ void KartObjectManager::calc() {
     data.softSpeedLimit = m_objects[0]->softSpeedLimit();
     data.mainRot = m_objects[0]->mainRot();
     data.angVel2 = m_objects[0]->angVel2();
+
+    const auto *raceMgrPlayer = raceManager->player(0);
+    data.raceCompletion = raceMgrPlayer->raceCompletion;
+    data.checkpointId = raceMgrPlayer->checkpointId;
+    data.jugemId = raceMgrPlayer->jugemId;
+
     SP::Kinoko::TestBuilder::Instance()->writeData(data);
 }
 

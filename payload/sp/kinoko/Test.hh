@@ -28,6 +28,10 @@ struct TestData {
     // Added in maj0 min5
     EGG::Quatf mainRot;
     EGG::Vector3f angVel2;
+    // Added in maj0 min6
+    f32 raceCompletion;
+    u16 checkpointId;
+    u8 jugemId;
 };
 
 } // namespace SP::Kinoko
