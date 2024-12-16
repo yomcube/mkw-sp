@@ -1,7 +1,6 @@
 #include "KartObjectManager.hh"
 
 #include "game/system/RaceConfig.hh"
-#include "game/system/RaceManager.hh"
 
 #include <sp/kinoko/NANDReport.hh>
 #include <sp/kinoko/TestBuilder.hh>
@@ -11,63 +10,6 @@ extern "C" {
 }
 
 namespace Kart {
-
-void KartObjectManager::init() {
-    REPLACED(init)();
-
-    if (!System::RaceConfig::Instance()->isTimeAttack()) {
-        return;
-    }
-
-    SP::Kinoko::TestData data;
-    data.pos = m_objects[0]->pos();
-    data.fullRot = m_objects[0]->fullRot();
-    data.extVel = m_objects[0]->extVel();
-    data.intVel = m_objects[0]->intVel();
-    data.speed = m_objects[0]->speed();
-    data.acceleration = m_objects[0]->acceleration();
-    data.softSpeedLimit = m_objects[0]->softSpeedLimit();
-    data.mainRot = m_objects[0]->mainRot();
-    data.angVel2 = m_objects[0]->angVel2();
-
-    const auto *raceMgrPlayer = System::RaceManager::Instance()->player(0);
-    data.raceCompletion = raceMgrPlayer->raceCompletion;
-    data.checkpointId = raceMgrPlayer->checkpointId;
-    data.jugemId = raceMgrPlayer->jugemId;
-
-    SP::Kinoko::TestBuilder::Instance()->writeDataNoFrameInc(data);
-}
-
-void KartObjectManager::calc() {
-    REPLACED(calc)();
-
-    if (!System::RaceConfig::Instance()->isTimeAttack()) {
-        return;
-    }
-
-    auto *raceManager = System::RaceManager::Instance();
-    if (raceManager->isStageReached(3)) {
-        return;
-    }
-
-    SP::Kinoko::TestData data;
-    data.pos = m_objects[0]->pos();
-    data.fullRot = m_objects[0]->fullRot();
-    data.extVel = m_objects[0]->extVel();
-    data.intVel = m_objects[0]->intVel();
-    data.speed = m_objects[0]->speed();
-    data.acceleration = m_objects[0]->acceleration();
-    data.softSpeedLimit = m_objects[0]->softSpeedLimit();
-    data.mainRot = m_objects[0]->mainRot();
-    data.angVel2 = m_objects[0]->angVel2();
-
-    const auto *raceMgrPlayer = raceManager->player(0);
-    data.raceCompletion = raceMgrPlayer->raceCompletion;
-    data.checkpointId = raceMgrPlayer->checkpointId;
-    data.jugemId = raceMgrPlayer->jugemId;
-
-    SP::Kinoko::TestBuilder::Instance()->writeData(data);
-}
 
 void KartObjectManager::end(u32 playerIdx) {
     REPLACED(end)(playerIdx);
@@ -84,12 +26,20 @@ void KartObjectManager::end(u32 playerIdx) {
     }
 }
 
+const KartObject *KartObjectManager::object(size_t idx) const {
+    return m_objects[idx];
+}
+
 KartObjectManager *KartObjectManager::CreateInstance() {
     if (System::RaceConfig::Instance()->isTimeAttack()) {
         SP::Kinoko::TestBuilder::CreateInstance();
     }
 
     return REPLACED(CreateInstance)();
+}
+
+KartObjectManager *KartObjectManager::Instance() {
+    return s_instance;
 }
 
 } // namespace Kart

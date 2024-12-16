@@ -80,6 +80,9 @@
 0x80536230 _ZNK6System11RaceManager14isStageReachedEi
 0x8054994c _ZN6System15UnlockFlags_getEv
 
+0x8055472c _ZN5Scene9RaceScene11initEnginesEv
+0x80554ad4 _ZN5Scene9RaceScene19calcEnginesUnpausedEv
+
 0x80564adc FUN_80564adc
 
 0x8058faa8 _ZN4Kart17KartObjectManager14CreateInstanceEv
@@ -94,3 +97,5 @@
 
 0x809bd728 _ZN6System10RaceConfig10s_instanceE
 0x809bd730 _ZN6System11RaceManager10s_instanceE
+
+0x809c18f8 _ZN4Kart17KartObjectManager10s_instanceE
