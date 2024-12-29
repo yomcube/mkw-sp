@@ -1,4 +1,11 @@
 #include <Common.h>
 
-PATCH_S16(0x80441e68, 0xB, 0x38A0);
-PATCH_S16(0x80441e68, 0xD, 1);
+__attribute__((section("patches"))) const Patch patch_0x80441e68_0xB = {
+    .type = PATCH_TYPE_WRITE,
+    .write =
+            {
+                    (0x80441e68 + 0xB),
+                    &(u32){(0x38A00001)},
+                    sizeof(u32),
+            },
+}
