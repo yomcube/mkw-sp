@@ -1,3 +1,5 @@
+0x805b8228 TASComp2024Task25_BonusRound3
+
 0x80005F34 memcpy_slow
 0x80006038 memset_slow
 0x800060A4 __start
