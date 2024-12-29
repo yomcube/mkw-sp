@@ -522,6 +522,8 @@
 0x8038663c FstStringStart
 0x80386640 FstStart
 
+0x80441e68 UNK_80441E68
+
 0x80511e7c CourseMap_computeFinishTime
 0x80511ec8 CheckPoint_computeFinishTime
 0x8051486c _ZmiRK4Vec3S1_
