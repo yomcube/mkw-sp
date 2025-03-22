@@ -1,0 +1,4 @@
+json5
+pyelftools
+itanium_demangler
+protobuf==4.22.0
