@@ -12,14 +12,15 @@ PATCH_REPLACE_END(TASComp2025Task6_1A, 0)
 // 42340000 7d4802a6
 // c3ea0000 60000000
 PATCH_BL_START(TASComp2025Task6_2A, 0)
-	bl loc_0xC
+	bl b
 
-	loc_0x8:
-		bdnz+ loc_0x8
+	a:
+		bdnz+ a
 
-	loc_0xC:
+	b:
 		mflr r10
 		lfs f31, 0(r10)
+	
 PATCH_BL_END(TASComp2025Task6_2A, 0)
 // 04591fe8 38a00001
 PATCH_REPLACE_START(TASComp2025Task6_2B, 0)
