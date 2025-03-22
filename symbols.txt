@@ -1,3 +1,8 @@
+0x8057eaf4 TASComp2025Task6_1A
+0x8057ebe0 TASComp2025Task6_1B
+0x805782ac TASComp2025Task6_2A
+0x8058b7c4 TASComp2025Task6_2B
+
 0x80005F34 memcpy_slow
 0x80006038 memset_slow
 0x800060A4 __start
