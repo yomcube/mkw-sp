@@ -8,7 +8,6 @@ PATCH_REPLACE_END(TASComp2025Task6_1A, 0)
 // IDBs Have MK8 Inward Drift [Gaberboo]
 PATCH_BRANCH_START(TASComp2025Task6_2A, 0, 1)
 	bl loc_0xC
-	.word 0x00000000
 
 	loc_0x8:
 		bdnz+ loc_0x8
