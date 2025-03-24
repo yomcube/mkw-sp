@@ -32,6 +32,8 @@ struct TestData {
     f32 raceCompletion;
     u16 checkpointId;
     u8 jugemId;
+    // Added in maj0 min7
+    EGG::Vector3f angVel0;
 };
 
 } // namespace SP::Kinoko

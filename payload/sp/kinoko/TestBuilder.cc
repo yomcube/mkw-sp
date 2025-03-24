@@ -49,6 +49,7 @@ void TestBuilder::writeData(const TestData &data) {
     pData->raceCompletion = data.raceCompletion;
     pData->checkpointId = data.checkpointId;
     pData->jugemId = data.jugemId;
+    pData->angVel0 = data.angVel0;
 
     incFrameCount();
     m_index += sizeof(TestData);
@@ -65,7 +66,7 @@ TestData *TestBuilder::findNextEntry() const {
 
 u32 TestBuilder::version() const {
     constexpr u16 major = 0;
-    constexpr u16 minor = 6;
+    constexpr u16 minor = 7;
     return major << 16 | minor;
 }
 

@@ -10,6 +10,10 @@ const EGG::Vector3f &KartObject::extVel() const {
     return body->physics->dynamics->extVel;
 }
 
+const EGG::Vector3f &KartObject::angVel0() const {
+    return body->physics->dynamics->angVel0;
+}
+
 const EGG::Vector3f &KartObject::angVel2() const {
     return body->physics->dynamics->angVel2;
 }

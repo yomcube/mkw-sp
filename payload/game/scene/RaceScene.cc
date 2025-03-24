@@ -28,6 +28,7 @@ void RaceScene::initEngines() {
     data.acceleration = kartObject->acceleration();
     data.softSpeedLimit = kartObject->softSpeedLimit();
     data.mainRot = kartObject->mainRot();
+    data.angVel0 = kartObject->angVel0();
     data.angVel2 = kartObject->angVel2();
 
     const auto *raceMgrPlayer = System::RaceManager::Instance()->player(0);
@@ -61,6 +62,7 @@ void RaceScene::calcEnginesUnpaused() {
     data.acceleration = kartObject->acceleration();
     data.softSpeedLimit = kartObject->softSpeedLimit();
     data.mainRot = kartObject->mainRot();
+    data.angVel0 = kartObject->angVel0();
     data.angVel2 = kartObject->angVel2();
 
     const auto *raceMgrPlayer = raceManager->player(0);
