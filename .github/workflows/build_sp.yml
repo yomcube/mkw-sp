@@ -28,16 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: devkitpro/devkitppc:latest
-    env:
-      DEVKITPPC: opt/devkitpro/devkitPPC
     timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install ninja
-        run: sudo apt-get -y install ninja-build
-      - name: Install protoc
-        run: sudo apt-get -y install protobuf-compiler
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install ninja-build protobuf-compiler
       - name: Install Python
         uses: actions/setup-python@v4
         with:
