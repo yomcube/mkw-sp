@@ -26,26 +26,14 @@ jobs:
           - debug
           - test
     runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitppc:latest
     env:
       DEVKITPPC: opt/devkitpro/devkitPPC
     timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cache DevkitPPC
-        id: cache-1
-        uses: actions/cache@v4
-        with:
-          path: cache
-          key: ${{ runner.os }}-cache-dkp-r43.3
-      - name: Download devkitPPC
-        if: steps.cache-1.outputs.cache-hit != 'true'
-        run: |
-          mkdir cache && cd cache
-          wget "https://wii.leseratte10.de/devkitPro/devkitPPC/r43%20%282023-04-29%29/devkitPPC-r43-3-linux_x86_64.pkg.tar.zst"
-          cd ..
-      - name: Extract devkitPPC
-        run: tar -xf cache/devkitPPC-r43-3-linux_x86_64.pkg.tar.zst
       - name: Install ninja
         run: sudo apt install ninja-build
       - name: Install protoc
