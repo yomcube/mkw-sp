@@ -35,9 +35,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install ninja
-        run: sudo apt install ninja-build
+        run: sudo apt-get -y install ninja-build
       - name: Install protoc
-        run: sudo apt install protobuf-compiler
+        run: sudo apt-get -y install protobuf-compiler
       - name: Install Python
         uses: actions/setup-python@v4
         with:
