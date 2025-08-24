@@ -1,3 +1,7 @@
+0x801AA9BC TASCode_Activation
+0x80520D30 TASCode_TASCode
+0x80348200 TASCode_Controller
+
 0x80005F34 memcpy_slow
 0x80006038 memset_slow
 0x800060A4 __start
