@@ -489,6 +489,7 @@ CHUNKS = {
         Chunk(0x809c4680, 0x809c4684, 0x809bfdc0),
         Chunk(0x809c4740, 0x809c474c, 0x809bff90),
         Chunk(0x809c496c, 0x809c4970, 0x809c014c),
+        Chunk(0x808a5960, 0x808a5964, 0x808a0ec0),
     ],
     'J': [
         Chunk(0x80004000, 0x80008024, 0x80004000),
@@ -543,6 +544,7 @@ CHUNKS = {
         Chunk(0x809c4680, 0x809c4684, 0x809c36e0),
         Chunk(0x809c4740, 0x809c474c, 0x809c37a0),
         Chunk(0x809c496c, 0x809c4970, 0x809c39cc),
+        Chunk(0x808a5960, 0x808a5964, 0x808a4ac0),
     ],
     'K': [
         Chunk(0x80004000, 0x800074dc, 0x80004000),
@@ -636,6 +638,7 @@ CHUNKS = {
         Chunk(0x809c4680, 0x809c4684, 0x809b2cc0),
         Chunk(0x809c4740, 0x809c474c, 0x809b2d80),
         Chunk(0x809c496c, 0x809c4970, 0x809b2fac),
+        Chunk(0x808a5960, 0x808a5964, 0x80893dc0),
     ],
 }
 
