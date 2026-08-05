@@ -59,7 +59,7 @@ SRC_BINARIES = {
                 Section('sdata'     , 0x80384C00, 0x80385FC0),
                 Section('sbss'      , 0x80385FC0, 0x80386FA0),
                 Section('sdata2'    , 0x80386FA0, 0x80389140),
-                Section('sbss2'     , 0x80389140, 0x8038917C)
+                Section('sbss2'     , 0x80389140, 0x80429464)
             ]
         ),
         'rel':SrcBinary(
@@ -90,7 +90,7 @@ SRC_BINARIES = {
                 Section('sdata'     , 0x80380880, 0x80381C40),
                 Section('sbss'      , 0x80381C40, 0x80382C20),
                 Section('sdata2'    , 0x80382C20, 0x80384DC0),
-                Section('sbss2'     , 0x80384DC0, 0x80384DFC)
+                Section('sbss2'     , 0x80384DC0, 0x804250e4)
             ]
         ),
         'rel': SrcBinary(
@@ -121,7 +121,7 @@ SRC_BINARIES = {
                 Section('sdata'     , 0x80384580, 0x80385940),
                 Section('sbss'      , 0x80385940, 0x80386920),
                 Section('sdata2'    , 0x80386920, 0x80388AC0),
-                Section('sbss2'     , 0x80388AC0, 0x80388AFC)
+                Section('sbss2'     , 0x80388AC0, 0x80428de4)
             ]
         ),
         'rel': SrcBinary(
@@ -152,7 +152,7 @@ SRC_BINARIES = {
                 Section('sdata'     , 0x80372C00, 0x80373FE0),
                 Section('sbss'      , 0x80373FE0, 0x80374FC0),
                 Section('sdata2'    , 0x80374FC0, 0x80377160),
-                Section('sbss2'     , 0x80377160, 0x8037719C)
+                Section('sbss2'     , 0x80377160, 0x80417484)
             ]
         ),
         'rel': SrcBinary(
