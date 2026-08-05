@@ -1,6 +1,6 @@
-0x8078f658 Task10_A
-0x805acea8 Task10_B
-0x808a0ec0 Task10_C
+0x80798664 Task10_A
+0x805b7dd0 Task10_B
+0x808a5960 Task10_C
 
 0x80005F34 memcpy_slow
 0x80006038 memset_slow
