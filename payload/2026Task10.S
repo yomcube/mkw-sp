@@ -2,7 +2,8 @@
 
 PATCH_BL_START(Task10_A, 0)
     bl loc_0x8
-    .word 0x47435000
+    .short 0x4743
+    .short 0x5000
 
     loc_0x8:
         mflr r10
